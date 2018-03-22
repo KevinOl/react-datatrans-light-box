@@ -17,9 +17,7 @@ const buildUrl = (props, production) => production
 
 const hasError = ev => typeof ev.data !== typeof undefined && ev.data.type === 'error'
 
-
 export default class LightBox extends Component {
-
 
   constructor(props) {
     super(props)
@@ -38,7 +36,7 @@ export default class LightBox extends Component {
 
   onMessage(ev) {
     
-    window.console.log('xxxxx on message', ev)
+    window.console.log('xxxxx on message', ev, this)
     
     if(ev.origin !== this.origin) return
     if(ev.data === 'cancel') return this.boundOnCancelled()
