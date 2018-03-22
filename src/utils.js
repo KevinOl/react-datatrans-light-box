@@ -20,9 +20,10 @@ export const toUrlParams = props => Object.keys(props)
 
 
 export const parseUrl = url => {
-  const a = document.createElement('a')
-  a.href = url
-  return a
+	const pathArray = url.split('/')
+	const protocol = pathArray[0]
+	const host = pathArray[2]
+	return protocol + '//' + host
 }
 
 export const lockScrolling = () => {
