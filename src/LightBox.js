@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import PaymentPageFrame from './PaymentPageFrame'
 import {
-  filterProps, toUrlParams, parseUrl,
+  filterProps, toUrlParams, getBaseUrl,
   lockScrolling,
   releaseLock
 } from './utils'
