@@ -19,7 +19,7 @@ export const toUrlParams = props => Object.keys(props)
 .join('&')
 
 
-export const parseUrl = url => {
+export const getBaseUrl = url => {
 	const pathArray = url.split('/')
 	const protocol = pathArray[0]
 	const host = pathArray[2]
