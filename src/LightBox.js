@@ -37,6 +37,9 @@ export default class LightBox extends Component {
   }
 
   onMessage(ev) {
+    
+    window.console.log('xxxxx on message', ev)
+    
     if(ev.origin !== this.origin) return
     if(ev.data === 'cancel') return this.onCancelled()
     if(ev.data === 'frameReady') return this.props.onLoaded()
@@ -44,17 +47,20 @@ export default class LightBox extends Component {
   }
 
   onCancelled() {
+    window.console.log('xxxxx on cancelled')
     this.setState({visible: false})
     releaseLock()
     this.props.onCancelled()
   }
 
   componentDidMount() {
+    window.console.log('xxxxx component did mount')
     const addListener = window.addEventListener || window.attachEvent
     addListener('message', this.onMessage)
   }
 
   componentWillUnmount() {
+    window.console.log('xxxxx component will unmount')
     const removeListener = window.removeEventListener || window.detachEvent
     removeListener('message', this.onMessage)
     releaseLock()
