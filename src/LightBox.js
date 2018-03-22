@@ -24,8 +24,8 @@ export default class LightBox extends Component {
   constructor(props) {
     super(props)
 
-    this.onMessage = this.onMessage.bind(this)
-    this.onCancelled = this.onCancelled.bind(this)
+    this.boundOnMessage = this.onMessage.bind(this)
+    this.boundOnCancelled = this.onCancelled.bind(this)
 
     lockScrolling()
 
@@ -41,7 +41,7 @@ export default class LightBox extends Component {
     window.console.log('xxxxx on message', ev)
     
     if(ev.origin !== this.origin) return
-    if(ev.data === 'cancel') return this.onCancelled()
+    if(ev.data === 'cancel') return this.boundOnCancelled()
     if(ev.data === 'frameReady') return this.props.onLoaded()
     if(hasError(ev)) return this.props.onError(ev.data)
   }
@@ -56,13 +56,13 @@ export default class LightBox extends Component {
   componentDidMount() {
     window.console.log('xxxxx component did mount')
     const addListener = window.addEventListener || window.attachEvent
-    addListener('message', this.onMessage)
+    addListener('message', this.boundOnMessage)
   }
 
   componentWillUnmount() {
     window.console.log('xxxxx component will unmount')
     const removeListener = window.removeEventListener || window.detachEvent
-    removeListener('message', this.onMessage)
+    removeListener('message', this.boundOnMessage)
     releaseLock()
   }
 
